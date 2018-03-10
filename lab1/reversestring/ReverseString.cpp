@@ -5,10 +5,10 @@
 #include "ReverseString.h"
 
 
-std::string reverse(std::string str) {
+std::string Reverse(std::string str) {
     if (str[0]=='\0'){
         return (std::string());
     }
     char letter=str[0];
-    return reverse(str.substr(1))+letter;
+    return Reverse(str.substr(1))+letter;
 }

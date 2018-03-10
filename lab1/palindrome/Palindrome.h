@@ -5,9 +5,11 @@
 #ifndef JIMP_EXERCISES_PALINDORME_H
 #define JIMP_EXERCISES_PALINDORME_H
 
-#include "string"
+#include <string>
+#include "ReverseString.h"
 
-bool is_palindrome(std::string str);
-std::string reverse1(std::string str);
+
+bool IsPalindrome(std::string str);
+//std::string reverse(std::string str);
 
 #endif //JIMP_EXERCISES_PALINDORME_H

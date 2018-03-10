@@ -8,10 +8,11 @@
 #include <stdint-gcc.h>
 #include "iostream"
 #include "string"
+#include "ReverseString.h"
+
+
 
 uint64_t DoubleBasePalindromes(int max_value_exclusive);
-
-std::string reversed(std::string str);
 
 std::string ChangeBase(int a);
 
