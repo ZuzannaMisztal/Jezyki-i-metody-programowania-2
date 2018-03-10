@@ -23,7 +23,7 @@ TEST_F(Array2DStep4Tests,
       {{1, 2, 3},
        {4, 5, 6}};
 
-  FillArray2D(k_rows, k_cols, to_fill);
+    Fill(k_cols, k_rows, to_fill);
   for (int x = 0; x < k_rows; ++x) {
     for (int y = 0; y < k_cols; ++y) {
       EXPECT_EQ(expected[x][y], to_fill[x][y]) << "element (" << x << ", " << y << ")\n";
