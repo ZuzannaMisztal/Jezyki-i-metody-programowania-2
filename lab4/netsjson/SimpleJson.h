@@ -22,7 +22,7 @@ using ::std::literals::operator""s;
 namespace nets{
     class JsonValue {
         int value1;
-        float value2;
+        double value2;
         string value3;
         bool value4;
         vector<JsonValue> value5;
@@ -31,7 +31,7 @@ namespace nets{
 
     public:
         JsonValue(int);
-        JsonValue(float);
+        JsonValue(double);
         JsonValue(string);
         JsonValue(bool);
         JsonValue(vector<JsonValue>);
@@ -40,7 +40,7 @@ namespace nets{
         std::experimental::optional<JsonValue> ValueByName(const std::string &name) const;
         std::string ToString() const;
     };
-
+    std::string raw_string(std::string);
 }
 
 

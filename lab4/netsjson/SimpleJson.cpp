@@ -9,7 +9,7 @@ nets::JsonValue::JsonValue(int a) {
     type=1;
 }
 
-nets::JsonValue::JsonValue(float a) {
+nets::JsonValue::JsonValue(double a) {
     value2=a;
     type=2;
 }
@@ -51,9 +51,12 @@ std::string nets::JsonValue::ToString() const {
             break;
         case 2:
             result = std::to_string(value2);
+            while (result.back()=='0'){
+                result=result.substr(0,result.length()-1);
+            }
             break;
         case 3:
-            result = "\"" + value3 + "\"";
+            result=raw_string(value3);
             break;
         case 4:
             if (value4) {
@@ -64,7 +67,8 @@ std::string nets::JsonValue::ToString() const {
             break;
         case 5:
             result = "[";
-            bool first = true;
+            bool first;
+            first = true;
             for (auto n : value5) {
                 if (!first) {
                     result.append(", ");
@@ -73,10 +77,43 @@ std::string nets::JsonValue::ToString() const {
                 }
                 result.append(n.ToString());
             }
-            result += "]";
+            result += ']';
+            break;
+        case 6:
+            result+="{";
+            first = true;
+            for (const auto &str : value6){
+                if (!first){
+                    result+=", ";
+                }
+                else{
+                    first= false;
+                }
+                result.append(raw_string(str.first));
+                result+=": ";
+                result.append(str.second.ToString());
+            }
+            result+="}";
             break;
         default:
             return result;
     }
-    return std::string();
+    return result;
 }
+// "\"\\\"abc\\\"\""
+// "\"\"abc\"\""
+std::string nets::raw_string(std::string to_copy) {
+    std::string result = "\"";
+    for (int i=0; i<to_copy.length(); ++i){
+        if (to_copy[i]=='\\'){
+            result += "\\";
+        }
+        if (to_copy[i]=='\"'){
+            result+="\\";
+        }
+        result+=to_copy[i];
+    }
+    result+="\"";
+    return result;
+}
+
