@@ -21,7 +21,7 @@ namespace algebra {
         ~Matrix();
         std::pair<size_t, size_t> Size() const;
         void DynamicArray();
-        void Print() const;
+        std::string Print() const;
         Matrix Add(const Matrix &)const;
         Matrix Sub(const Matrix &)const;
         Matrix Mul(const Matrix &)const;

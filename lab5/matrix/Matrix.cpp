@@ -87,27 +87,29 @@ algebra::Matrix::Matrix(std::string matlab) {
     }
 }
 
-void algebra::Matrix::Print() const {
-    std::cout<<"[";
+std::string algebra::Matrix::Print() const {
+    std::stringstream s;
+    s<<"[";
     bool f=true;
     for (int i=0; i<number_of_rows; ++i){
         if (f){
-            std::cout<<"[";
+            s<<"[";
             f= false;
         } else{
-            std::cout<<"; ";
+            s<<"; ";
         }
         bool first=true;
         for (int j=0; j<number_of_columns; ++j){
             if (!first) {
-                std::cout << ", ";
+                s << ", ";
             } else{
                 first= false;
             }
-            std::cout<< (matrix[i][j]).real() << "i" << (matrix[i][j]).imag();
+            s<< (matrix[i][j]).real() << "i" << (matrix[i][j]).imag();
         }
     }
-    std::cout<<"]";
+    s<<"]";
+    return s.str();
 }
 
 algebra::Matrix algebra::Matrix::Add(const algebra::Matrix &m) const{
@@ -170,8 +172,8 @@ algebra::Matrix algebra::Matrix::Pow(int n) const {
 }
 
 algebra::Matrix::Matrix(const std::initializer_list<std::vector<std::complex<double>>> &vectors) {
-    number_of_rows=vectors.size();
-    number_of_columns=(vectors.begin())->size();
+    number_of_rows=(int)vectors.size();
+    number_of_columns=(int)(vectors.begin())->size();
     DynamicArray();
     int current_row=0;
     int current_column=0;
