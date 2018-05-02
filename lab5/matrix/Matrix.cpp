@@ -14,9 +14,16 @@ algebra::Matrix::Matrix(int rows, int columns) {
 }
 
 void algebra::Matrix::DynamicArray() {
-    this->matrix =new std::complex<double> *[this->number_of_rows];
+    this->matrix = new std::complex<double> *[this->number_of_rows];
     for (int i=0; i < this->number_of_rows; ++i){
         this->matrix[i]=new std::complex<double> [this->number_of_columns];
+    }
+    std::complex<double> complex_zero = 0.;
+
+    for(int i=0; i<number_of_rows; i++){
+        for(int j=0; j<number_of_columns; j++){
+            this->matrix[i][j] = complex_zero;
+        }
     }
 }
 
@@ -24,7 +31,7 @@ algebra::Matrix::~Matrix() {
     for (int i=0; i<number_of_rows; ++i){
         delete[] matrix[i];
     }
-    delete[] *matrix;
+    delete[] matrix;
 }
 
 std::pair<size_t, size_t> algebra::Matrix::Size() const{
@@ -93,7 +100,6 @@ std::string algebra::Matrix::Print() const {
     bool f=true;
     for (int i=0; i<number_of_rows; ++i){
         if (f){
-            s<<"[";
             f= false;
         } else{
             s<<"; ";
@@ -115,13 +121,14 @@ std::string algebra::Matrix::Print() const {
 algebra::Matrix algebra::Matrix::Add(const algebra::Matrix &m) const{
     if (this->Size()==m.Size()){
         algebra::Matrix result(number_of_rows,number_of_columns);
-        for (int i=0; i<number_of_rows; ++i){
-            for (int j=0; j<number_of_columns; ++j){
-                result.matrix[i][j]=matrix[i][j]+m.matrix[i][j];
-            }
-        }
+//        for (int i=0; i<number_of_rows; ++i){
+//            for (int j=0; j<number_of_columns; ++j){
+//                result.matrix[i][j]=matrix[i][j]+m.matrix[i][j];
+//            }
+//        }
         return result;
     }
+    return algebra::Matrix(0,0);
 }
 
 algebra::Matrix algebra::Matrix::Sub(const algebra::Matrix &m) const{
@@ -134,6 +141,7 @@ algebra::Matrix algebra::Matrix::Sub(const algebra::Matrix &m) const{
         }
         return result;
     }
+    return algebra::Matrix(0,0);
 }
 
 algebra::Matrix algebra::Matrix::Mul(const algebra::Matrix &m) const {
@@ -141,7 +149,7 @@ algebra::Matrix algebra::Matrix::Mul(const algebra::Matrix &m) const {
         algebra::Matrix result(number_of_rows, m.number_of_columns);
         for (int i=0; i<number_of_rows; ++i){
             for (int j=0; j<m.number_of_columns; ++j){
-                std::complex<double> n=0;
+                std::complex<double> n= 0.;
                 for (int k=0; k<number_of_columns; ++k){
                     n+=matrix[i][k]*m.matrix[k][j];
                 }

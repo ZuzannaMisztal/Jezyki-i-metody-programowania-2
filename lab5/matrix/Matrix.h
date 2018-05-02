@@ -10,7 +10,6 @@
 namespace algebra {
     class Matrix {
     private:
-    public:
         std::complex<double> **matrix;
         int number_of_rows;
         int number_of_columns;
