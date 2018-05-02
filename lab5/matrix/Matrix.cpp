@@ -121,11 +121,11 @@ std::string algebra::Matrix::Print() const {
 algebra::Matrix algebra::Matrix::Add(const algebra::Matrix &m) const{
     if (this->Size()==m.Size()){
         algebra::Matrix result(number_of_rows,number_of_columns);
-//        for (int i=0; i<number_of_rows; ++i){
-//            for (int j=0; j<number_of_columns; ++j){
-//                result.matrix[i][j]=matrix[i][j]+m.matrix[i][j];
-//            }
-//        }
+        for (int i=0; i<number_of_rows; ++i){
+            for (int j=0; j<number_of_columns; ++j){
+                result.matrix[i][j]=matrix[i][j]+m.matrix[i][j];
+            }
+        }
         return result;
     }
     return algebra::Matrix(0,0);
