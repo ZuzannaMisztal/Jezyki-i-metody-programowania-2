@@ -19,7 +19,7 @@ void algebra::Matrix::DynamicArray() {
         this->matrix[i]=new std::complex<double> [this->number_of_columns];
     }
     std::complex<double> complex_zero = 0.;
-
+int n = 3;
     for(int i=0; i<number_of_rows; i++){
         for(int j=0; j<number_of_columns; j++){
             this->matrix[i][j] = complex_zero;
