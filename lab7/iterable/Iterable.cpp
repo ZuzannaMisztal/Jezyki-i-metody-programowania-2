@@ -152,6 +152,19 @@ utility::IterableIteratorWrapper utility::Iterable::end() const {
 utility::Zipper::Zipper(std::vector<int> vi, std::vector<std::string> vs){
     int_vector=move(vi);
     string_vector=move(vs);
+    int not_equal=int_vector.size()-string_vector.size();
+    if (not_equal>0){
+        std::string to_emplace=string_vector[string_vector.size()-1];
+        for (int i=0; i<not_equal; ++i){
+            string_vector.emplace_back(to_emplace);
+        }
+    }
+    if (not_equal<0){
+        int to_emplace=int_vector[int_vector.size()-1];
+        for (int i=0; i<-not_equal; ++i){
+            int_vector.emplace_back(to_emplace);
+        }
+    }
 }
 
 std::unique_ptr<utility::IterableIterator> utility::Zipper::ConstBegin() const {
