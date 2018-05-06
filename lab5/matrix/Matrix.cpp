@@ -119,46 +119,43 @@ std::string algebra::Matrix::Print() const {
 }
 
 algebra::Matrix algebra::Matrix::Add(const algebra::Matrix &m) const{
+    algebra::Matrix result(number_of_rows,number_of_columns);
     if (this->Size()==m.Size()){
-        algebra::Matrix result(number_of_rows,number_of_columns);
         for (int i=0; i<number_of_rows; ++i){
             for (int j=0; j<number_of_columns; ++j){
                 result.matrix[i][j]=matrix[i][j]+m.matrix[i][j];
             }
         }
-        return result;
     }
-    return algebra::Matrix(0,0);
+    return result;
 }
 
 algebra::Matrix algebra::Matrix::Sub(const algebra::Matrix &m) const{
+    algebra::Matrix result(number_of_rows,number_of_columns);
     if (this->Size()==m.Size()){
-        algebra::Matrix result(number_of_rows,number_of_columns);
         for (int i=0; i<number_of_rows; ++i){
             for (int j=0; j<number_of_columns; ++j){
                 result.matrix[i][j]=matrix[i][j]-m.matrix[i][j];
             }
         }
-        return result;
     }
-    return algebra::Matrix(0,0);
+    return result;
 }
 
 algebra::Matrix algebra::Matrix::Mul(const algebra::Matrix &m) const {
-    if (number_of_columns==m.number_of_rows){
-        algebra::Matrix result(number_of_rows, m.number_of_columns);
-        for (int i=0; i<number_of_rows; ++i){
-            for (int j=0; j<m.number_of_columns; ++j){
-                std::complex<double> n= 0.;
-                for (int k=0; k<number_of_columns; ++k){
-                    n+=matrix[i][k]*m.matrix[k][j];
+    algebra::Matrix result(number_of_rows, m.number_of_columns);
+        if (number_of_columns==m.number_of_rows){
+            for (int i=0; i<number_of_rows; ++i){
+                for (int j=0; j<m.number_of_columns; ++j){
+                    std::complex<double> n= 0.;
+                    for (int k=0; k<number_of_columns; ++k){
+                        n+=matrix[i][k]*m.matrix[k][j];
+                    }
+                    result.matrix[i][j]=n;
                 }
-                result.matrix[i][j]=n;
             }
         }
-        return result;
-    }
-    return algebra::Matrix(0,0);
+    return result;
 }
 
 algebra::Matrix algebra::Matrix::Pow(int n) const {
@@ -176,7 +173,7 @@ algebra::Matrix algebra::Matrix::Pow(int n) const {
         }
         return result;
     }
-    return algebra::Matrix(0, 0);
+    return algebra::Matrix(1, 1);
 }
 
 algebra::Matrix::Matrix(const std::initializer_list<std::vector<std::complex<double>>> &vectors) {

@@ -8,7 +8,8 @@
 #include <stdexcept>
 #include <MemLeakTest.h>
 #include <StringUtility.h>
-#include <MovieSubtitles.h>
+//#include <MovieSubtitles.h>
+#include "../../lab8/moviesubs/MovieSubtitles.h"
 
 using ::moviesubs::MicroDvdSubtitles;
 using ::utility::MatchesUpToExtraNewLine;
