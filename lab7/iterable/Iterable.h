@@ -11,12 +11,15 @@
 
 namespace utility {
     class IterableIterator {
-    protected:
+    public:
         std::vector<int>::const_iterator l_b;
         std::vector<std::string>::const_iterator r_b;
         std::vector<int>::const_iterator l_e;
         std::vector<std::string>::const_iterator r_e;
+        std::vector<int>::const_iterator l_current;
+        std::vector<std::string>::const_iterator r_current;
     public:
+        IterableIterator()= default;
         IterableIterator(std::vector<int>::const_iterator left_begin,
                          std::vector<std::string>::const_iterator right_begin,
                          std::vector<int>::const_iterator left_end,
@@ -24,8 +27,8 @@ namespace utility {
         virtual std::pair<int, std::string> Dereference() const =0;
         virtual IterableIterator &Next()=0;
         virtual bool NotEquals(const std::unique_ptr<IterableIterator>&) const =0;
-        std::vector<int>::const_iterator GetL_B();
-        std::vector<std::string>::const_iterator GetR_B();
+        std::vector<int>::const_iterator GetL_Current();
+        std::vector<std::string>::const_iterator GetR_Current();
         ~IterableIterator()= default;
     };
 
@@ -40,7 +43,8 @@ namespace utility {
         bool NotEquals(const std::unique_ptr<IterableIterator>&)const override;
     };
 
-    class EnumerateIterator : public IterableIterator{public:
+    class EnumerateIterator : public IterableIterator{
+    public:
         explicit EnumerateIterator(std::vector<int>::const_iterator left_begin,
         std::vector<std::string>::const_iterator right_begin,
                 std::vector<int>::const_iterator left_end,
@@ -50,7 +54,8 @@ namespace utility {
         bool NotEquals(const std::unique_ptr<IterableIterator>&) const override;
     };
 
-    class ProductIterator : public IterableIterator{public:
+    class ProductIterator : public IterableIterator{
+    public:
         explicit ProductIterator(std::vector<int>::const_iterator left_begin,
                                    std::vector<std::string>::const_iterator right_begin,
                                    std::vector<int>::const_iterator left_end,
