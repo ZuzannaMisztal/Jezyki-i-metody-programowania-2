@@ -143,6 +143,9 @@ algebra::Matrix algebra::Matrix::Sub(const algebra::Matrix &m) const{
 }
 
 algebra::Matrix algebra::Matrix::Mul(const algebra::Matrix &m) const {
+//    if (number_of_columns!=m.number_of_rows){
+//        return algebra::Matrix(0,0);
+//    }
     algebra::Matrix result(number_of_rows, m.number_of_columns);
         if (number_of_columns==m.number_of_rows){
             for (int i=0; i<number_of_rows; ++i){
@@ -190,5 +193,12 @@ algebra::Matrix::Matrix(const std::initializer_list<std::vector<std::complex<dou
         current_row+=1;
         current_column=0;
     }
+}
+
+algebra::Matrix &algebra::Matrix::operator=(algebra::Matrix &&other) {
+    if (this!=&other) {
+        this->matrix=std::move(other.matrix);
+    }
+    return *this;
 }
 

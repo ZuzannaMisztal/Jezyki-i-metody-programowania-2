@@ -73,7 +73,7 @@ utility::IterableIterator &utility::EnumerateIterator::Next() {
 }
 
 bool utility::EnumerateIterator::NotEquals(const std::unique_ptr<utility::IterableIterator> &o) const {
-    return (l_current == o->GetL_Current() and r_current == o->GetR_Current());
+    return !(l_current == o->GetL_Current() and r_current == o->GetR_Current());
 }
 
 
@@ -104,7 +104,7 @@ utility::IterableIterator &utility::ProductIterator::Next() {
 }
 
 bool utility::ProductIterator::NotEquals(const std::unique_ptr<utility::IterableIterator> &o) const {
-    return (l_current == o->GetL_Current() and r_current == o->GetR_Current());
+    return !(l_current == o->GetL_Current() and r_current == o->GetR_Current());
 }
 
 
@@ -185,7 +185,7 @@ std::unique_ptr<utility::IterableIterator> utility::Zipper::ConstEnd() const {
 utility::Enumerate::Enumerate(std::vector<std::string> vs) {
     int_vector.clear();
     for (int i = 0; i < vs.size(); ++i) {
-        int_vector.emplace_back(i);
+        int_vector.emplace_back(i+1);
     }
     string_vector = move(vs);
 }

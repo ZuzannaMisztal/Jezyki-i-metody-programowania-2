@@ -44,3 +44,16 @@ TEST_F(IterableEnumerationTests, EnumerateLongerStringList) {
   }
   EXPECT_EQ(expected.size(),i);
 }
+
+TEST_F(IterableEnumerationTests, EnumerateLongerSdsfadsaList) {
+  vector<string> vs {"troche", "dluzszy", "wektor", "poniewaz", "posiada", "wiecej", "elementow"};
+  vector<int> expected {1, 2, 3, 4, 5, 6, 7};
+
+  size_t i = 0;
+  for (const auto &p : Enumerate(vs)) {
+    EXPECT_EQ(expected[i], p.first);
+    EXPECT_EQ(vs[i], p.second);
+    i++;
+  }
+  EXPECT_EQ(expected.size(),i);
+}

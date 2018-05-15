@@ -16,7 +16,8 @@ namespace algebra {
     public:
         Matrix(int, int);
         Matrix(std::string);
-        Matrix (const std::initializer_list<std::vector<std::complex<double>>> &);;
+        Matrix (const std::initializer_list<std::vector<std::complex<double>>> &);
+        Matrix &operator=(Matrix &&);
         ~Matrix();
         std::pair<size_t, size_t> Size() const;
         void DynamicArray();
