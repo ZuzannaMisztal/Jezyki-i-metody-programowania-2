@@ -22,6 +22,8 @@ int main(){
 //    cout<<"Zuzia"<<endl;
 //    m4.Print();
     Matrix m1{{1.0i, 0., 0.}, {0., 1.0i, 0.}, {0., 0., 1.0i}};
-    const complex<double> &first = m1.matrix[0][0];
+    Matrix m2{{0.0}};
+    m2 = m1;
+    m2 = move(m1);
     return 0;
 }
