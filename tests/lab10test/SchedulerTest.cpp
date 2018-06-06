@@ -292,7 +292,7 @@ TEST_F(ScheduleTest, SchedulerCreatesFullSchedule) {
                            make_pair(5, set<int>{90, 91, 92, 93})};
 
   Schedule schedule;
-  EXPECT_NO_THROW(schedule = scheduler->PrepareNewSchedule(rooms, teachers, years, 7));
+  EXPECT_NO_THROW(schedule = scheduler->PrepareNewSchedule(rooms, teachers, years, 8));
 
   EXPECT_PRED_FORMAT1(ValidSchedule, schedule);
   vector<int> expected_teachers{100, 200, 300, 400, 500, 600};
